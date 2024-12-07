@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Livro</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <h1>Loja Virtual de Livros</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="carrinho.html">Carrinho</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Detalhes do Livro -->
+    <main>
+        <div class="detalhes-container">
+            <!-- JavaScript irá preencher essas informações -->
+            <img id="livro-imagem" src="" alt="Imagem do Livro">
+            <div class="detalhes-info">
+                <h2 id="livro-titulo"></h2>
+                <p><strong>Autor:</strong> <span id="livro-autor"></span></p>
+                <p><strong>Preço:</strong> <span id="livro-preco"></span></p>
+                <p><strong>Sinopse:</strong> <span id="livro-sinopse"></span></p>
+                <button id="adicionar-carrinho">Adicionar ao Carrinho</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Função que exibe o conteúdo baseado no ID
+        function exibirDetalhes(id) {
+            const livros = [
+                {
+                    id: 1,
+                    titulo: "O Hobbit",
+                    autor: "J.R.R. Tolkien",
+                    preco: "R$ 39,90",
+                    sinopse: "Uma aventura épica no mundo da Terra-média.",
+                    imagem: "livro1.jpg"
+                },
+                {
+                    id: 2,
+                    titulo: "Dom Casmurro",
+                    autor: "Machado de Assis",
+                    preco: "R$ 29,90",
+                    sinopse: "A história de Bentinho e Capitu, marcada por ciúmes e dúvidas.",
+                    imagem: "livro2.jpg"
+                },
+                {
+                    id: 3,
+                    titulo: "1984",
+                    autor: "George Orwell",
+                    preco: "R$ 49,90",
+                    sinopse: "Uma distopia sobre vigilância totalitária e controle social.",
+                    imagem: "livro3.jpg"
+                },
+                {
+                    id: 4,
+                    titulo: "Harry Potter e a Pedra Filosofal",
+                    autor: "J.K. Rowling",
+                    preco: "R$ 69,90",
+                    sinopse: "A história de um jovem bruxo que começa suas aventuras na escola de magia.",
+                    imagem: "livro4.jpg"
+                }
+            ];
+
+            const livro = livros.find(l => l.id == id);
+
+            if (livro) {
+                document.getElementById("livro-titulo").textContent = livro.titulo;
+                document.getElementById("livro-autor").textContent = livro.autor;
+                document.getElementById("livro-preco").textContent = livro.preco;
+                document.getElementById("livro-sinopse").textContent = livro.sinopse;
+                document.getElementById("livro-imagem").src = livro.imagem;
+                document.getElementById("livro-imagem").alt = livro.titulo;
+            }
+        }
+
+        // Pegando o parâmetro "id" da URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const idLivro = urlParams.get('id');
+
+        if (idLivro) {
+            exibirDetalhes(idLivro);
+        }
+    </script>
+</body>
+
+</html>
